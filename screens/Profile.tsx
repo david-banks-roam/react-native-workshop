@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, Image } from 'react-native';
+import { StyleSheet, Image, Dimensions } from 'react-native'
 import { Text, View } from '../components/Themed';
 import { useProfile } from '../contexts/ProfileContext';
 
@@ -8,8 +8,18 @@ export default function TabTwoScreen() {
 
     return (
         <View style={styles.container}>
-            <Text>{profile.name}</Text>
-            {!!profile.picture && <Image source={profile.picture} />}
+            <Text>Hi, {profile.name || 'anonymous'}</Text>
+            {!!profile.picture && (
+                <Image
+                  resizeMode="contain"
+                  style={{
+                      marginTop: 40,
+                      width: Dimensions.get('window').width,
+                      height: Dimensions.get('window').width * profile.picture.height / profile.picture.width
+                  }}
+                  source={profile.picture}
+                />
+            )}
         </View>
     );
 }
@@ -17,8 +27,6 @@ export default function TabTwoScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
     },
     title: {
         fontSize: 20,

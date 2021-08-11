@@ -1,6 +1,5 @@
-import * as React from 'react';
-import { useState } from 'react';
-import { StyleSheet, TextInput, Button, Alert } from 'react-native';
+import React, { useState, useEffect, useRef } from 'react';
+import { StyleSheet, TextInput, Button } from 'react-native';
 import { Camera } from 'expo-camera';
 
 import { Text, View } from '../components/Themed';
@@ -9,27 +8,38 @@ import { useProfile } from '../contexts/ProfileContext';
 export default function TabOneScreen() {
     const { profile, updateProfile } = useProfile();
     const [textInputVal, setTextInputVal] = useState(profile.name);
-    const [, setHasPermission] = useState<boolean>();
-    const cameraRef = React.useRef<Camera>(null);
-    React.useEffect(() => {
+    const [hasPermission, setHasPermission] = useState<boolean | null>(null);
+    const cameraRef = useRef<Camera | null>(null);
+
+    useEffect(() => {
         (async () => {
             const { status } = await Camera.requestPermissionsAsync();
             setHasPermission(status === 'granted');
         })();
     }, []);
+
     const onTakePicture = async () => {
         if (cameraRef.current) {
-            const picture = await cameraRef.current.takePictureAsync();
+            const picture = await cameraRef.current!.takePictureAsync();
             updateProfile({
                 picture,
             });
         }
     };
+
     const onSave = () => {
         updateProfile({
             name: textInputVal,
         });
     };
+
+    if (hasPermission === null) {
+        return <View />
+    }
+    if (!hasPermission) {
+        return <Text>No access to camera</Text>;
+    }
+
     return (
         <View style={styles.container}>
             <Text>Name : </Text>

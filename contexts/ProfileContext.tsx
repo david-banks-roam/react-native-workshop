@@ -1,38 +1,38 @@
-import { CameraCapturedPicture } from 'expo-camera';
-import React, { useState, createContext, useContext } from 'react';
+import { CameraCapturedPicture } from "expo-camera";
+import React, { useState, createContext, useContext } from "react";
 
 export type Profile = {
-    name: string;
-    picture?: CameraCapturedPicture;
+  name: string;
+  picture?: CameraCapturedPicture;
 };
 
 type ProfileContext = {
-    profile: Profile;
-    updateProfile: (profile: Partial<Profile>) => void;
+  profile: Profile;
+  updateProfile: (profile: Partial<Profile>) => void;
 };
 
 const DEFAULT_PROFILE: Profile = {
-    name: '',
+  name: "",
 };
 
 export const ProfileContext = createContext<ProfileContext>({
-    profile: DEFAULT_PROFILE,
-    updateProfile: () => {},
+  profile: DEFAULT_PROFILE,
+  updateProfile: () => {},
 });
 
 export function useProfile() {
-    return useContext(ProfileContext);
+  return useContext(ProfileContext);
 }
 
 export const ProfileProvider: React.FC = ({ children }) => {
-    const [profile, setProfile] = useState<Profile>(DEFAULT_PROFILE);
+  const [profile, setProfile] = useState<Profile>(DEFAULT_PROFILE);
 
-    const updateProfile = (profileUpdates: Partial<Profile>) => {
-        setProfile({ ...profile, ...profileUpdates });
-    };
-    return (
-        <ProfileContext.Provider value={{ profile, updateProfile }}>
-            {children}
-        </ProfileContext.Provider>
-    );
+  const updateProfile = (profileUpdate: Partial<Profile>) => {
+    setProfile({ ...profile, ...profileUpdate });
+  };
+  return (
+    <ProfileContext.Provider value={{ profile, updateProfile }}>
+      {children}
+    </ProfileContext.Provider>
+  );
 };

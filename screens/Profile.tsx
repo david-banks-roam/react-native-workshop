@@ -1,7 +1,5 @@
 import * as React from "react";
-import { StyleSheet, Image } from "react-native";
-import { Text, View } from "../components/Themed";
-import { useProfile } from "../contexts/ProfileContext";
+import { StyleSheet, Text, View } from "react-native";
 
 export default function ProfileScreen() {
   return (

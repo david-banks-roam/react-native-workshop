@@ -1,10 +1,5 @@
 import * as React from "react";
-import { useState } from "react";
-import { StyleSheet, TextInput, Button, Alert } from "react-native";
-import { Camera } from "expo-camera";
-
-import { Text, View } from "../components/Themed";
-import { useProfile } from "../contexts/ProfileContext";
+import { StyleSheet, Text, View } from "react-native";
 
 export default function FormScreen() {
   return (

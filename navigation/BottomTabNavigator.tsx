@@ -10,7 +10,6 @@ import * as React from 'react';
 
 import Colors from '../constants/Colors';
 import { ProfileProvider } from '../contexts/ProfileContext';
-import useColorScheme from '../hooks/useColorScheme';
 import TabOneScreen from '../screens/Form';
 import TabTwoScreen from '../screens/Profile';
 import { BottomTabParamList, TabOneParamList, TabTwoParamList } from '../types';
@@ -18,13 +17,11 @@ import { BottomTabParamList, TabOneParamList, TabTwoParamList } from '../types';
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
 export default function BottomTabNavigator() {
-    const colorScheme = useColorScheme();
-
     return (
         <ProfileProvider>
             <BottomTab.Navigator
                 initialRouteName="Form"
-                tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}
+                tabBarOptions={{ activeTintColor: Colors.tint }}
             >
                 <BottomTab.Screen
                     name="Form"

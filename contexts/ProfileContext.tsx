@@ -1,9 +1,9 @@
-import { CameraCapturedPicture } from "expo-camera";
 import React, { useState, createContext, useContext } from "react";
+import { ImageInfo } from 'expo-image-picker/build/ImagePicker.types'
 
 export type Profile = {
   name: string;
-  picture?: CameraCapturedPicture;
+  image?: ImageInfo;
 };
 
 type ProfileContext = {

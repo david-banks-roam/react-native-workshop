@@ -14,7 +14,7 @@ type ProfileContext = {
 const DEFAULT_PROFILE: Profile = {
   name: 'Random Cat',
   image: {
-    uri: 'https://cataas.com/cat?type=square',
+    uri: 'https://images.unsplash.com/photo-1490650034439-fd184c3c86a5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=200',
     width: 80,
     height: 80
   }

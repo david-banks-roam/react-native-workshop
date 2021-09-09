@@ -12,7 +12,12 @@ type ProfileContext = {
 };
 
 const DEFAULT_PROFILE: Profile = {
-  name: "",
+  name: 'Random Cat',
+  image: {
+    uri: 'https://cataas.com/cat?type=square',
+    width: 80,
+    height: 80
+  }
 };
 
 export const ProfileContext = createContext<ProfileContext>({
